@@ -1,6 +1,3 @@
-import javafx.scene.control.Label;
-import javafx.scene.layout.HBox;
-
 public class Scoreboard extends HBox {
     private int wins;
     private int losses;

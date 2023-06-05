@@ -1,4 +1,7 @@
-class Scoreboard extends HBox {
+import javafx.scene.control.Label;
+import javafx.scene.layout.HBox;
+
+public class Scoreboard extends HBox {
     private int wins;
     private int losses;
     private Label winsLabel;
@@ -7,22 +10,22 @@ class Scoreboard extends HBox {
     public Scoreboard() {
         wins = 0;
         losses = 0;
-        winsLabel = new Label("Wins: " + wins);
-        lossesLabel = new Label("Losses: " + losses);
-        getChildren().addAll(winsLabel, lossesLabel);
+        winsLabel = new Label("Wins: " + wins); // displays the number of wins
+        lossesLabel = new Label("Losses: " + losses); // displays the number of losses
+        getChildren().addAll(winsLabel, lossesLabel); // labels for the Scoreboard layout
     }
 
     public void update(boolean isWin) {
         if (isWin) {
-            wins++;
+            wins++; // Increment the number of wins
         } else {
-            losses++;
+            losses++; // Increment the number of losses
         }
-        updateLabels();
+        updateLabels(); // Update the labels with the new counts
     }
 
     private void updateLabels() {
-        winsLabel.setText("Wins: " + wins);
-        lossesLabel.setText("Losses: " + losses);
+        winsLabel.setText("Wins: " + wins); // Update the wins label with the new count
+        lossesLabel.setText("Losses: " + losses); // Update the losses label with the new count
     }
 }

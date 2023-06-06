@@ -7,6 +7,11 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
+import javafx.scene.layout.HBox;
+import javafx.scene.control.Label;
+import javafx.scene.Node;
+import javafx.scene.control.Label;
+import javafx.scene.layout.HBox;
 
 public class HangmanGame extends Application {
    private String secretWord;
@@ -39,20 +44,34 @@ public class HangmanGame extends Application {
       guessButton.setOnAction(e -> makeGuess());
       guessTextField.setOnAction(e -> makeGuess());
    
-      hangmanImage = new HangmanImage(attemptsLeft);
+      
       scoreboard = new Scoreboard();
    
       VBox root = new VBox(10);
       root.setPadding(new Insets(10));
-      root.getChildren().addAll(titleLabel, wordLabel, guessedWordLabel, attemptsLabel, attemptsLeftLabel,
-             guessLabel, guessTextField, guessButton, hangmanImage, scoreboard);
-   
+      root.getChildren().addAll(titleLabel, wordLabel, guessedWordLabel, attemptsLabel, attemptsLeftLabel, guessLabel, guessTextField, guessButton, scoreboard);
+      
+      Button resetButton = new Button("Reset");
+    resetButton.setOnAction(e -> resetGame());
+    root.getChildren().add(resetButton);
+    
       Scene scene = new Scene(root);
       primaryStage.setScene(scene);
       primaryStage.setTitle("Hangman Game");
       primaryStage.show();
    }
 
+private void resetGame() {
+    selectSecretWord();
+    initializeGuessedWord();
+    attemptsLeft = 6;
+
+    guessedWordLabel.setText(guessedWord.toString());
+    attemptsLeftLabel.setText(String.valueOf(attemptsLeft));
+
+    guessTextField.clear();
+    guessButton.setDisable(false);
+}
    /*-------------------------------------------------------------------
    Beginning of the Game!
    -------------------------------------------------------------------*/
@@ -88,7 +107,6 @@ public class HangmanGame extends Application {
       } else {
          attemptsLeft--;
          attemptsLeftLabel.setText(String.valueOf(attemptsLeft));
-         hangmanImage.display();
          if (attemptsLeft == 0) {
             guessedWordLabel.setText("You lost. The word was: " + secretWord);
             guessButton.setDisable(true);

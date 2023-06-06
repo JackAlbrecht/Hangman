@@ -23,7 +23,6 @@ public class HangmanGame extends Application {
    private Label attemptsLeftLabel;
    private TextField guessTextField;
    private Button guessButton;
-   private HangmanImage hangmanImage;
    private Scoreboard scoreboard;
 
    // GUI ONLY NO CODE FROM THE GAME HERE
